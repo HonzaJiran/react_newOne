@@ -28,14 +28,19 @@ export class LoginScreen extends React.Component {
       "password": 'password55'//this.password.value
       })
       })
-      .then(response => { 
-        this.setState({'success' : response.ok})
-        //console.log(this.state.success)
+      .then(response => {
         return response.json()
       })
-      .then(data => {
-        this.setState({'token': data.token})
-        //console.log(this.state.token)
+      .then(responseData => {
+        return {
+          'data': responseData,
+          'success': response.ok
+        } 
+      })
+      .then(returnData => {
+        console.log(returnData.data.token)
+        console.log(returnData.success)
+        this.setState({'success' : returnData.success, 'token': returnData.data.token})
       }
     ); 
   }

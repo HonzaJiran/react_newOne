@@ -8,7 +8,13 @@ export class Miner extends React.Component {
   render(){
     return(
       <div>
-        <p>{this.props.data}</p>
+        <ul>
+          {
+            Array.from(this.props.data).map(miner => {
+              return <li>{miner.id}</li>;
+            })
+          }
+        </ul>
       </div>
     );
   }
